@@ -22,22 +22,19 @@ app.add_middleware(
 
 @app.get("/courses/{course_id}")
 async def get_course_data(course_id: int):
-    try:
-        course = await courses_collection.find_one({"id": course_id})
-        if not course:
-            raise HTTPException(status_code=404, detail="Course not found")
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=str(e))
+    course = await courses_collection.find_one({"id": course_id})
+    if not course:
+        raise HTTPException(status_code=404, detail="Course not found")
 
-    # teacher_id = course.get("teacher_id")
-    # if teacher_id:
-    #     teacher = await teachers_collection.find_one({"id": teacher_id})
-    #     if teacher:
-    #         course["teacher_info"] = teacher
-    #     else:
-    #         course["teacher_info"] = None
-    # else:
-    #     course["teacher_info"] = None
+    teacher_id = course.get("teacher_id")
+    if teacher_id:
+        teacher = await teachers_collection.find_one({"id": teacher_id})
+        if teacher:
+            course["teacher_info"] = teacher
+        else:
+            course["teacher_info"] = None
+    else:
+        course["teacher_info"] = None
 
     return json_util.dumps(course)
 
