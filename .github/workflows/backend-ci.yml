@@ -1,0 +1,32 @@
+name: Build and Deploy Backend Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image
+        run: |
+          docker build --build-arg CONF="${{ secrets.CONF }}" \
+                       -t technoed-hack-backend:latest src/.
+        
+      - name: Stop existing container
+        run: |
+          docker stop backend-container || true
+          docker rm backend-container || true
+        
+      - name: Run Docker container
+        run: |
+          docker run -d --name backend-container -p 8000:8000 \
+            technoed-hack-backend:latest
