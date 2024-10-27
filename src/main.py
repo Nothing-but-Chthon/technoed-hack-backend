@@ -1,3 +1,4 @@
+import ssl
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from bson import json_util
@@ -6,6 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from db import courses_collection, teachers_collection
 
 app = FastAPI()
+
+ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+ssl_context.load_cert_chain('/etc/letsencrypt/live/chthon.servebeer.com/fullchain.pem',
+                            keyfile='/etc/letsencrypt/live/chthon.servebeer.com/privkey.pem')
 
 origins = [
     "*",
