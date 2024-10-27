@@ -26,15 +26,15 @@ async def get_course_data(course_id: int):
     if not course:
         raise HTTPException(status_code=404, detail="Course not found")
 
-    teacher_id = course.get("teacher_id")
-    if teacher_id:
-        teacher = await teachers_collection.find_one({"id": teacher_id})
-        if teacher:
-            course["teacher_info"] = teacher
-        else:
-            course["teacher_info"] = None
-    else:
-        course["teacher_info"] = None
+    # teacher_id = course.get("teacher_id")
+    # if teacher_id:
+    #     teacher = await teachers_collection.find_one({"id": teacher_id})
+    #     if teacher:
+    #         course["teacher_info"] = teacher
+    #     else:
+    #         course["teacher_info"] = None
+    # else:
+    #     course["teacher_info"] = None
 
     return course
 
