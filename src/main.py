@@ -20,18 +20,9 @@ app.add_middleware(
 )
 
 
-@app.get("/course/{course_id}")
+@app.get("/courses/{course_id}")
 async def get_course_data(course_id: int):
     course = await courses_collection.find_one({"id": course_id})
-    teacher_id = course.get("teacher_id")
-    if teacher_id:
-        teacher = await teachers_collection.find_one({"id": teacher_id})
-        if teacher:
-            course["teacher_info"] = teacher
-        else:
-            course["teacher_info"] = None
-    else:
-        course["teacher_info"] = None
 
     return course
 
@@ -45,7 +36,7 @@ async def get_courses():
 
 @app.get("/events")
 async def get_events():
-    events = courses_collection.find({"event": True})
+    events = courses_collection.find({"entity": "event"})
     events = [event async for event in events]
     return json_util.dumps(events)
 
