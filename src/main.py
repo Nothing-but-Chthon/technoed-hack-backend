@@ -42,31 +42,31 @@ async def get_course_by_id(course_id: int):
     return json_util.dumps(course)
 
 
-@app.get("/courses/{course_id}")
+@app.get("/api/courses/{course_id}")
 async def get_course_data(course_id: int):
     return await get_course_by_id(course_id)
 
 
-@app.get("/events/{course_id}")
+@app.get("/api/events/{course_id}")
 async def get_event_data(course_id: int):
     return await get_course_by_id(course_id)
 
 
-@app.get("/courses")
+@app.get("/api/courses")
 async def get_courses():
     courses = courses_collection.find({"entity": "course"})
     courses = [course async for course in courses]
     return json_util.dumps(courses)
 
 
-@app.get("/events")
+@app.get("/api/events")
 async def get_events():
     events = courses_collection.find({"entity": "event"})
     events = [event async for event in events]
     return json_util.dumps(events)
 
 
-@app.get("/teachers")
+@app.get("/api/teachers")
 async def get_teachers():
     teachers = teachers_collection.find()
     teachers = [teacher async for teacher in teachers]
