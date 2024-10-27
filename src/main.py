@@ -1,10 +1,23 @@
 import uvicorn
 from fastapi import FastAPI
 from bson import json_util
+from fastapi.middleware.cors import CORSMiddleware
 
 from db import courses_collection, teachers_collection
 
 app = FastAPI()
+
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/course/{course_id}")
@@ -42,6 +55,7 @@ async def get_teachers():
     teachers = teachers_collection.find()
     teachers = [teacher async for teacher in teachers]
     return json_util.dumps(teachers)
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, host='0.0.0.0')
