@@ -25,14 +25,14 @@ async def get_course_by_id(course_id: int):
     if not course:
         raise HTTPException(status_code=404, detail="Course not found")
 
-    teacher_ids = course.get("teacher_id")
+    teacher_ids = course.get("teacher_ids", [])
     arr = []
     for teacher_id in teacher_ids:
         teacher = await teachers_collection.find_one({"id": teacher_id})
         if teacher:
             arr.append(teacher)
 
-    # course["teacher_info"] = json_util.dumps(arr)
+    course["teacher_info"] = json_util.dumps(arr)
 
     return json_util.dumps(course)
 
