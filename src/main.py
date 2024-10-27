@@ -54,7 +54,7 @@ async def get_events():
 async def get_teachers():
     teachers = teachers_collection.find()
     teachers = [teacher async for teacher in teachers]
-    return json_util.dumps(teachers)
+    return teachers
 
 
 if __name__ == "__main__":
