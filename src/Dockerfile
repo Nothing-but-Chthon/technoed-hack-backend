@@ -8,6 +8,8 @@ COPY auth.py /auth.py
 
 ARG CONF
 
+RUN echo "$CONF"
+
 RUN echo "$CONF" > /conf.py
 
 COPY db.py /db.py

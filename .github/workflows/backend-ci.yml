@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --build-arg CONF=${{ secrets.CONF }} \
+          docker build --build-arg CONF="${{ secrets.CONF }}" \
                        -t technoed-hack-backend:latest src/.
         
       - name: Stop existing container
