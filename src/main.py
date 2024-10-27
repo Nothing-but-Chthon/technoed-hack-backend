@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from bson import json_util
 
-from src.db import courses_collection, teachers_collection
+from db import courses_collection, teachers_collection
 
 app = FastAPI()
 
@@ -41,7 +41,7 @@ async def get_events():
 async def get_teachers():
     teachers = teachers_collection.find()
     teachers = [teacher async for teacher in teachers]
-    return teachers
+    return json_util.dumps(teachers)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, host='0.0.0.0')

@@ -1,3 +1,5 @@
 telebot
 fastapi
 pymongo
+motor
+uvicorn
