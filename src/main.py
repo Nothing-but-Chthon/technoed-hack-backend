@@ -32,7 +32,7 @@ async def get_course_by_id(course_id: int):
         if teacher:
             arr.append(teacher)
 
-    course["teacher_info"] = arr
+    course["teacher_info"] = json_util.dumps(arr)
 
     return json_util.dumps(course)
 
