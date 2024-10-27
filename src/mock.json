@@ -1,5 +1,5 @@
 [
-    {
+  {
     "id": 12345,
     "name": "SomeCource",
     "start_date": "01.01.1970",
@@ -9,40 +9,44 @@
     "short_description": "lolol",
     "type": "kids",
     "link": "www.leningrad",
-    "reviews": [{
+    "reviews": [
+      {
         "author": "pushkin",
         "grade": 5,
         "text": "kruto"
-        },
-        {
+      },
+      {
         "author": "lenin",
         "grade": 2,
         "text": "ne cruto"
-        }],
+      }
+    ],
     "summarized_reviews": "cool",
     "event": false
-    },
-    {
-        "id": 65432,
-        "name": "SomeEvent",
-        "start_date": "01.02.1970",
-        "duration": 160,
-        "location": "kazan",
-        "description": "sjdkfjskf",
-        "short_description": "lolol",
-        "type": "kids",
-        "link": "www.event",
-        "reviews": [{
-            "author": "pushkin",
-            "grade": 5,
-            "text": "kruto"
-            },
-            {
-            "author": "lenin",
-            "grade": 2,
-            "text": "ne cruto"
-            }],
-        "summarized_reviews": "cool",
-        "event": true
-    }
+  },
+  {
+    "id": 65432,
+    "name": "SomeEvent",
+    "start_date": "01.02.1970",
+    "duration": 160,
+    "location": "kazan",
+    "description": "sjdkfjskf",
+    "short_description": "lolol",
+    "type": "kids",
+    "link": "www.event",
+    "reviews": [
+      {
+        "author": "pushkin",
+        "grade": 5,
+        "text": "kruto"
+      },
+      {
+        "author": "lenin",
+        "grade": 2,
+        "text": "ne cruto"
+      }
+    ],
+    "summarized_reviews": "cool",
+    "event": true
+  }
 ]
