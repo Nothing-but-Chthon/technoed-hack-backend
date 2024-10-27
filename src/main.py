@@ -27,7 +27,7 @@ async def get_course_data(course_id: int):
         if not course:
             raise HTTPException(status_code=404, detail="Course not found")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=404, detail=str(e))
 
     # teacher_id = course.get("teacher_id")
     # if teacher_id:
@@ -39,7 +39,7 @@ async def get_course_data(course_id: int):
     # else:
     #     course["teacher_info"] = None
 
-    return course
+    return json_util.dumps(course)
 
 
 @app.get("/courses")
